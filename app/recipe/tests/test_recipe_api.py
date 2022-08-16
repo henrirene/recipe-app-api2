@@ -95,7 +95,7 @@ class PrivateRecipeApiTests(TestCase):
     def test_get_recipe_details(self):
         """Test get recipe detail."""
         recipe = create_recipe(user=self.user)
- 
+
         url = detail_url(recipe.id)
         res = self.client.get(url)
 
@@ -129,7 +129,7 @@ class PrivateRecipeApiTests(TestCase):
         payload = {'title': 'New recipe title'}
         url = detail_url(recipe.id)
         res = self.client.patch(url, payload)
-  
+
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         recipe.refresh_from_db()
         self.assertEqual(recipe.title, payload['title'])
@@ -190,6 +190,6 @@ class PrivateRecipeApiTests(TestCase):
 
         url = detail_url(recipe.id)
         res = self.client.delete(url)
- 
+
         self.assertEqual(res.status_code, status.HTTP_404_NOT_FOUND)
         self.assertTrue(Recipe.objects.filter(id=recipe.id).exists())
