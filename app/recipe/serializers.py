@@ -49,11 +49,12 @@ class RecipeDetailSerializer(RecipeSerializer):
         tags = validated_data.pop('tags', [])
         recipe = Recipe.objects.create(**validated_data)
         self._get_or_create_tags(tags, recipe)
-        #auth_user = self.context['request'].user
-        #for tag in tags:
+        # auth_user = self.context['request'].user
+        # for tag in tags:
         #    tag_obj, created = Tag.objects.get_or_create(
         #        user=auth_user,
-        #        **tag, #instead name=tag['name], if added other fields to tags object.
+        #        **tag, #instead name=tag['name], 
+        # if added other fields to tags object.
         #    )
         #    recipe.tags.add(tag_obj)
 
@@ -71,4 +72,3 @@ class RecipeDetailSerializer(RecipeSerializer):
 
         instance.save()
         return instance
-    
