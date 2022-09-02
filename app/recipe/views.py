@@ -57,9 +57,9 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
 
 class BaseReceipeAttrViewSet(mixins.DestroyModelMixin,
-                 mixins.UpdateModelMixin,
-                 mixins.ListModelMixin,
-                 viewsets.GenericViewSet):
+                mixins.UpdateModelMixin,
+                mixins.ListModelMixin,
+                viewsets.GenericViewSet):
     """Base viewset for receipe attributes."""
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
@@ -73,7 +73,6 @@ class TagViewSet(BaseReceipeAttrViewSet):
     """Manage tags in the database."""
     serializer_class = serializers.TagSerializer
     queryset = Tag.objects.all()
-
 
     def get_queryset(self):
         """Filter queryset to authenticated user."""
