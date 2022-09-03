@@ -105,7 +105,7 @@ class PrivateRecipeApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
 
-    def test_get_recipe_details(self):
+    def test_get_recipe_detail(self):
         """Test get recipe detail."""
         recipe = create_recipe(user=self.user)
 
@@ -213,7 +213,7 @@ class PrivateRecipeApiTests(TestCase):
             'title': 'Thai Prawn Curry',
             'time_minutes': 30,
             'price': Decimal('2.50'),
-            'tags': [{'name': 'Thai'}, {'name': 'Dinner'}]
+            'tags': [{'name': 'Thai'}, {'name': 'Dinner'}],
         }
         res = self.client.post(RECIPES_URL, payload, format='json')
 
@@ -299,7 +299,7 @@ class PrivateRecipeApiTests(TestCase):
             'title': 'Cauliflower Tacos',
             'time_minutes': 60,
             'price': Decimal('4.30'),
-            'ingredients': [{'name': 'Cauliflower'}, {'name': 'Salt'}]
+            'ingredients': [{'name': 'Cauliflower'}, {'name': 'Salt'}],
         }
         res = self.client.post(RECIPES_URL, payload, format='json')
 
@@ -315,14 +315,14 @@ class PrivateRecipeApiTests(TestCase):
             ).exists()
             self.assertTrue(exists)
 
-    def test_create_recipe_with_existin_ingredient(self):
+    def test_create_recipe_with_existing_ingredient(self):
         """Test creating a new recipe with existing ingredient."""
         ingredient = Ingredient.objects.create(user=self.user, name='Lemon')
         payload = {
             'title': 'Vietnamese Soup',
             'time_minutes': 25,
             'price': Decimal('2.55'),
-            'ingredients': [{'name': 'Lemon'}, {'name': 'Fish Sauce'}]
+            'ingredients': [{'name': 'Lemon'}, {'name': 'Fish Sauce'}],
         }
         res = self.client.post(RECIPES_URL, payload, format='json')
 
@@ -386,7 +386,7 @@ class PrivateRecipeApiTests(TestCase):
         tag1 = Tag.objects.create(user=self.user, name='Vegan')
         tag2 = Tag.objects.create(user=self.user, name='Vegetarian')
         r1.tags.add(tag1)
-        r1.tags.add(tag2)
+        r2.tags.add(tag2)
         r3 = create_recipe(user=self.user, title='Fish and chips.')
 
         params = {'tags': f'{tag1.id},{tag2.id}'}
