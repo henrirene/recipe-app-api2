@@ -23,7 +23,7 @@ from core.models import (
 from recipe.serializers import (
     RecipeSerializer,
     RecipeDetailSerializer,
-    )
+)
 
 
 RECIPES_URL = reverse('recipe:recipe-list')
@@ -120,7 +120,7 @@ class PrivateRecipeApiTests(TestCase):
         payload = {
             'title': 'Sample recipe',
             'time_minutes': 30,
-            'price': Decimal('5.99')
+            'price': Decimal('5.99'),
         }
         res = self.client.post(RECIPES_URL, payload)
 

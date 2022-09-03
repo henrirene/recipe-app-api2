@@ -1,5 +1,5 @@
 """
-Tests for user API.
+Tests for  the user API.
 """
 from django.test import TestCase
 from django.contrib.auth import get_user_model
@@ -7,6 +7,7 @@ from django.urls import reverse
 
 from rest_framework.test import APIClient
 from rest_framework import status
+
 
 CREATE_USER_URL = reverse('user:create')
 TOKEN_URL = reverse('user:token')
@@ -19,7 +20,7 @@ def create_user(**params):
 
 
 class PublicUserApiTests(TestCase):
-    """Test the publick features of the user API"""
+    """Test the public features of the user API."""
 
     def setUp(self):
         self.client = APIClient()
@@ -45,7 +46,6 @@ class PublicUserApiTests(TestCase):
             'password': 'testpass123',
             'name': 'Test Name',
         }
-
         create_user(**payload)
         res = self.client.post(CREATE_USER_URL, payload)
 
@@ -67,7 +67,7 @@ class PublicUserApiTests(TestCase):
         self.assertFalse(user_exists)
 
     def test_create_token_for_user(self):
-        """Test generates token for valid credentials"""
+        """Test generates token for valid credentials."""
         user_details = {
             'name': 'Test Name',
             'email': 'test@example.com',
@@ -77,7 +77,7 @@ class PublicUserApiTests(TestCase):
 
         payload = {
             'email': user_details['email'],
-            'password': user_details['password']
+            'password': user_details['password'],
         }
         res = self.client.post(TOKEN_URL, payload)
 
@@ -110,7 +110,7 @@ class PublicUserApiTests(TestCase):
 
 
 class PrivateUserApiTests(TestCase):
-    """Test API request that requires authentication."""
+    """Test API requests that require authentication."""
 
     def setUp(self):
         self.user = create_user(
