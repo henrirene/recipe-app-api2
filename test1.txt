@@ -1,3 +1,24 @@
 abiks käsud:
 1. docker-compose run --rm app sh -c "python manage.py startapp user"
 2. docker-compose run --rm app sh -c "python manage.py test"
+ docker-compose run --rm app sh -c "python manage.py makemigrations"
+
+   File "/app/recipe/tests/test_recipe_api.py", line 399, in test_filter_by_tags
+    self.assertIn(s2.data, res.data)
+AssertionError: 
+{'id': 18, 'title': 'Aubergine with Tahini', 
+'time_minutes': 22, 'price': '5.25', 
+'link': 'http://example.com/recipe.pdf', 
+'tags': [], 'ingredients': []} 
+
+not found in 
+[OrderedDict([('id', 17), 
+('title', 'Thai Vegetable Curry'), 
+('time_minutes', 22), 
+('price', '5.25'), 
+('link', 'http://example.com/recipe.pdf'), 
+('tags', [OrderedDict([('id', 8), 
+('name', 'Vegan')]),
+OrderedDict([('id', 9), 
+('name', 'Vegetarian')])]), 
+('ingredients', [])])]
