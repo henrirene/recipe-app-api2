@@ -38,7 +38,7 @@ from recipe import serializers
                 'ingredients',
                 OpenApiTypes.STR,
                 description='Comma separated list of ingredient IDs to filter',
-            )
+            ),
         ]
     )
 )
