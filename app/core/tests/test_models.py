@@ -89,6 +89,18 @@ class ModelTests(TestCase):
         )
 
         self.assertEqual(str(ingredient), ingredient.name)
+    
+    def test_create_step(self):
+        """Test create a step in receipe is successful."""
+        user = create_user()
+        step = models.Step.objects.create(
+            user=user,
+            order='1.',
+            instruction='Step1 description',
+            type='typeOf'
+        )
+    
+        self.assertEqual(str(step), step.type)
 
     @patch('core.models.uuid.uuid4')
     def test_recipe_file_name_uuid(self, mock_uuid):
